@@ -4620,7 +4620,9 @@ input[type="button"].btn-block {
     padding-top: 0.3125rem;
     padding-bottom: 0.3125rem;
     margin-right: 1rem;
-    font-size: 1.25rem;
+    font-size: 1.55rem;
+    font-style: oblique;
+    font-weight: bold;
     line-height: inherit;
     white-space: nowrap;
 }
@@ -4817,6 +4819,8 @@ input[type="button"].btn-block {
         -webkit-box-pack: start;
         -ms-flex-pack: start;
         justify-content: flex-start;
+        margin-left: 5rem;
+        margin-right: 5rem;
     }
 
         .navbar-expand-lg .navbar-nav {
@@ -4831,8 +4835,8 @@ input[type="button"].btn-block {
             }
 
             .navbar-expand-lg .navbar-nav .nav-link {
-                padding-right: 0.5rem;
-                padding-left: 0.5rem;
+                padding-right: 1rem;
+                padding-left: 1rem;
             }
 
         .navbar-expand-lg > .container,
@@ -7136,7 +7140,8 @@ a.close.disabled {
 }
 
 .bg-primary {
-    background-color: #E95420 !important;
+    background-color: #E95420;
+    background-image: linear-gradient(180deg, #E95420, #E67f25)
 }
 
 a.bg-primary:hover, a.bg-primary:focus,
@@ -11185,11 +11190,11 @@ a.text-danger:hover, a.text-danger:focus {
 }
 
 .text-light {
-    color: #e9ecef !important;
+    color: #fafafa !important;
 }
 
 a.text-light:hover, a.text-light:focus {
-    color: #bdc6cf !important;
+    color: #fff3a4 !important;
 }
 
 .text-dark {
