@@ -3,7 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29424.173
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComedyBookingApp", "ComedyBookingApp\ComedyBookingApp.csproj", "{5955A965-3EFD-4926-ABCD-61908C13E8A1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ComedyBookingApp", "ComedyBookingApp\ComedyBookingApp.csproj", "{5955A965-3EFD-4926-ABCD-61908C13E8A1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComedyBookingApp.DataAccess", "ComedyBookingApp.DataAccess\ComedyBookingApp.DataAccess.csproj", "{C2FFB592-37AB-4653-8A76-948BFB09B3DF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComedyBookingApp.Models", "ComedyBookingApp.Models\ComedyBookingApp.Models.csproj", "{DAFA8B02-FBB0-477A-994B-BD72202E969D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComedyBookingApp.Utility", "ComedyBookingApp.Utility\ComedyBookingApp.Utility.csproj", "{382D4416-BE72-4326-A59A-DDD181CE612B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +21,18 @@ Global
 		{5955A965-3EFD-4926-ABCD-61908C13E8A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5955A965-3EFD-4926-ABCD-61908C13E8A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5955A965-3EFD-4926-ABCD-61908C13E8A1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C2FFB592-37AB-4653-8A76-948BFB09B3DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2FFB592-37AB-4653-8A76-948BFB09B3DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2FFB592-37AB-4653-8A76-948BFB09B3DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2FFB592-37AB-4653-8A76-948BFB09B3DF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DAFA8B02-FBB0-477A-994B-BD72202E969D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DAFA8B02-FBB0-477A-994B-BD72202E969D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DAFA8B02-FBB0-477A-994B-BD72202E969D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DAFA8B02-FBB0-477A-994B-BD72202E969D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{382D4416-BE72-4326-A59A-DDD181CE612B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{382D4416-BE72-4326-A59A-DDD181CE612B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{382D4416-BE72-4326-A59A-DDD181CE612B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{382D4416-BE72-4326-A59A-DDD181CE612B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
