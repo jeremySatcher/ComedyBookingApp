@@ -27,8 +27,6 @@ namespace Uplift.Models
         [Display(Name="Agent Email")]
         public string Email { get; set; }
 
-        [Required]
-        public string Comedian { get; set; }
 
         [ForeignKey("ComedianId")]
         public Comedian Comedian { get; set; }

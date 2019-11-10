@@ -27,10 +27,7 @@ namespace Uplift.Models
         public string PhoneNumber { get; set; }
 
 
-        [Required]
-        public string Lcoation { get; set; }
-
         [ForeignKey("LocationId")]
-        public Lcoation Location { get; set; }
+        public Location Location { get; set; }
     }
 }
