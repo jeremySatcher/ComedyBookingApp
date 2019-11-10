@@ -37,14 +37,10 @@ namespace Uplift.Models
         [Display(Name ="Location Image")]
         public string ImageUrl { get; set; }
 
-        [Display(Name="Contact Name")]
-        public string ContactName { get; set; }
 
         [Display(Name="Capacity")]
         public int Capacity { get; set; }
 
-        [Required]
-        [Display(Name = "Display Order")]
-        public int DisplayOrder { get; set; }
+    
     }
 }
