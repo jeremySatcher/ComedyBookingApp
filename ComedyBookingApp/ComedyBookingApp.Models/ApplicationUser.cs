@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 
-namespace Uplift.Models
+namespace ComedyBookingApp.Models
 {
     public class ApplicationUser : IdentityUser
     {
