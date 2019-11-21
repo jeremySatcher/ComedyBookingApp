@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace ComedyBookingApp.Models
@@ -40,6 +41,11 @@ namespace ComedyBookingApp.Models
 
         [Display(Name="Capacity")]
         public int Capacity { get; set; }
+
+        [ForeignKey("LocationId")]
+        public ICollection<Event> Event { get; set; }
+
+        public LocationContact LocationContact { get; set; }
 
     
     }

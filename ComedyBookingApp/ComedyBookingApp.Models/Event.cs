@@ -36,8 +36,8 @@ namespace ComedyBookingApp.Models
         [ForeignKey("LocationId")]
         public Location Location { get; set; }
 
-        [ForeignKey("ComedianId")]
-        public Comedian Comedian { get; set; }
+        [ForeignKey("ComedianShowId")]
+        public ICollection<ComedianShow> ComedianShows { get; set; }
 
 
     }

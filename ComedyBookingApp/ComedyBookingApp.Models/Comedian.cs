@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace ComedyBookingApp.Models
@@ -40,6 +41,13 @@ namespace ComedyBookingApp.Models
 
         [Display(Name="Comedian Home City")]
         public string City { get; set; }
+
+        public int AgentId { get; set; }
+
+        public Agent Agent { get; set; }
+
+        [ForeignKey("ComedianShowId")]
+        public ICollection<ComedianShow> ComedianShow { get; set; }
 
 
     }

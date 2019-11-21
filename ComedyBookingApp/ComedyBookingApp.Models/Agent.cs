@@ -30,7 +30,8 @@ namespace ComedyBookingApp.Models
 
 
         [ForeignKey("ComedianId")]
-        public Comedian Comedian { get; set; }
+
+        public ICollection<Comedian> Comedian { get; set; }
 
 
     }
