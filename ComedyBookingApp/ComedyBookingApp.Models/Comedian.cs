@@ -29,7 +29,7 @@ namespace ComedyBookingApp.Models
 
     
         [Display(Name="Comedian Years of Experience")]
-        public string ExpereinceYears { get; set; }
+        public string ExperienceYears { get; set; }
 
         [DataType(DataType.ImageUrl)]
         [Display(Name ="Comedian Headshot")]
