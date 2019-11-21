@@ -36,7 +36,7 @@ namespace ComedyBookingApp.DataAccess.Data.Repository
             objFromDb.Date = showevent.Date;
             objFromDb.Time = showevent.Time;
             objFromDb.Location = showevent.Location;
-            objFromDb.Comedian = showevent.Comedian;
+            objFromDb.ComedianShows = showevent.ComedianShows;
 
             _db.SaveChanges();
         }
