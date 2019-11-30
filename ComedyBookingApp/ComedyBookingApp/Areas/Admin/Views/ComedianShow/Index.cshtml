@@ -1,0 +1,35 @@
+﻿
+@{
+    ViewData["Title"] = "Comedian Show";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+<div class="backgroundWhite">
+    <div class="row">
+        <div class="col-6">
+            <h2 class="text-primary">Comedian Show List</h2>
+        </div>
+        <div class="col-6 text-right">
+            <a asp-action="Upsert" class="btn btn-info"><i class="fas fa-plus"></i>&nbsp; Create New Comedian Show</a>
+        </div>
+    </div>
+
+    <br />
+    <br />
+
+    <table id="tblData" class="table table-striped table-bordered" style="width:100%">
+        <thead>
+            <tr>
+                <th>Comedian</th>
+                <th>Event</th>
+
+            </tr>
+        </thead>
+    </table>
+</div>
+
+@section Scripts{
+    <script src="~/js/comedianshow.js"></script>
+}
+

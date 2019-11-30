@@ -21,11 +21,23 @@
             </button>
 
             <div class="collapse navbar-collapse" id="navbarColor01">
-
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        <a class="nav-link text-light" asp-area="Booker" asp-controller="Home" asp-action="Index">Home</a>
                     </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropDown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Content Management
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropDown">
+                            <a class="dropdown-item text-black" asp-area="Admin" asp-controller="Comedian" asp-action="Index">Comedians</a>
+                            <a class="dropdown-item text-black" asp-area="Admin" asp-controller="Event" asp-action="Index">Events</a>
+                            <a class="dropdown-item text-black" asp-area="Admin" asp-controller="Location" asp-action="Index">Venues</a>
+                            <a class="dropdown-item text-black" asp-area="Admin" asp-controller="LocationContact" asp-action="Index">Venue Contacts</a>
+                            <a class="dropdown-item text-black" asp-area="Admin" asp-controller="Agent" asp-action="Index">Agents</a>
+                        </div>
+                    </li>
+
                     <li class="nav-item">
                         <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                     </li>

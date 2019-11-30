@@ -19,6 +19,8 @@ namespace ComedyBookingApp.DataAccess.Data
         public DbSet <Agent> Agent {get; set; }
         public DbSet<Location> Location { get; set; }
         public DbSet<LocationContact> LocationContact {get; set;}
+
+        public DbSet<ComedianShow> ComedianShow { get; set; }
         public DbSet<ApplicationUser> ApplicationUser { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)

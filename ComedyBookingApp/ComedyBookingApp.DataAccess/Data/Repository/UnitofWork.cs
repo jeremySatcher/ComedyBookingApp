@@ -6,7 +6,7 @@ using System.Text;
 
 namespace ComedyBookingApp.DataAccess.Data.Repository
 {
-    class UnitofWork : IUnitofWork
+    public class UnitofWork : IUnitofWork
     {
         private readonly ApplicationDbContext _db;
 
@@ -18,6 +18,7 @@ namespace ComedyBookingApp.DataAccess.Data.Repository
             Event = new EventRepository(_db);
             LocationContact = new LocationContactRepository(_db);
             Location = new LocationRepository(_db);
+            ComedianShow = new ComedianShowRepository(_db);
         }
 
         public IAgentRepository Agent { get; private set; }
@@ -25,6 +26,8 @@ namespace ComedyBookingApp.DataAccess.Data.Repository
         public IEventRepository Event { get; private set; }
         public ILocationContactRepository LocationContact { get; private set; }
         public ILocationRepository Location { get; private set; }
+
+        public IComedianShowRepository ComedianShow { get; private set; }
 
         public void Dispose()
         {
