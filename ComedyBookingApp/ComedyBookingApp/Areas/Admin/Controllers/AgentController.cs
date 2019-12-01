@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ComedyBookingApp.DataAccess.Data.Repository.IRepository;
+using ComedyBookingApp.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ComedyBookingApp.Areas.Admin.Controllers
@@ -21,12 +22,48 @@ namespace ComedyBookingApp.Areas.Admin.Controllers
             return View();
         }
 
+        public IActionResult Upsert(int? id)
+        {
+            Agent agent = new Agent();
+            if (id == null)
+            {
+                return View(agent);
+            }
+            agent = _unitofWork.Agent.Get(id.GetValueOrDefault());
+            if (agent == null)
+            {
+                return NotFound();
+            }
+            return View(agent);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+
+        public IActionResult Upsert(Agent agent)
+        {
+            if (ModelState.IsValid)
+            {
+                if (agent.Id == 0)
+                {
+                    _unitofWork.Agent.Add(agent);
+                }
+                else
+                {
+                    _unitofWork.Agent.Update(agent);
+                }
+                _unitofWork.Save();
+                return RedirectToAction(nameof(Index));
+            }
+            return View(agent);
+        }
+
         #region API CALLS
 
         [HttpGet]
         public IActionResult GetAll()
         {
-            return Json(new { data = _unitofWork.LocationContact.GetAll() });
+            return Json(new { data = _unitofWork.Agent.GetAll() });
         }
 
         [HttpDelete]

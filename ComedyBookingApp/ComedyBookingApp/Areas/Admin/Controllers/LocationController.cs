@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ComedyBookingApp.DataAccess.Data.Repository.IRepository;
+using ComedyBookingApp.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ComedyBookingApp.Areas.Admin.Controllers
@@ -10,6 +11,7 @@ namespace ComedyBookingApp.Areas.Admin.Controllers
     [Area("Admin")]
     public class LocationController : Controller
     {
+
         private readonly IUnitofWork _unitofWork;
 
         public LocationController(IUnitofWork unitOfWork)
@@ -21,12 +23,48 @@ namespace ComedyBookingApp.Areas.Admin.Controllers
             return View();
         }
 
+        public IActionResult Upsert(int? id)
+        {
+            Location location = new Location();
+            if (id == null)
+            {
+                return View(location);
+            }
+            location = _unitofWork.Location.Get(id.GetValueOrDefault());
+            if (location == null)
+            {
+                return NotFound();
+            }
+            return View(location);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+
+        public IActionResult Upsert(Location location)
+        {
+            if (ModelState.IsValid)
+            {
+                if (location.Id == 0)
+                {
+                    _unitofWork.Location.Add(location);
+                }
+                else
+                {
+                    _unitofWork.Location.Update(location);
+                }
+                _unitofWork.Save();
+                return RedirectToAction(nameof(Index));
+            }
+            return View(location);
+        }
+
         #region API CALLS
 
         [HttpGet]
         public IActionResult GetAll()
         {
-            return Json(new { data = _unitofWork.LocationContact.GetAll() });
+            return Json(new { data = _unitofWork.Location.GetAll() });
         }
 
         [HttpDelete]
