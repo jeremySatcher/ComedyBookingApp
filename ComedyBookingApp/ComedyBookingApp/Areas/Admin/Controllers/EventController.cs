@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using ComedyBookingApp.DataAccess.Data.Repository.IRepository;
 using ComedyBookingApp.Models;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ComedyBookingApp.Areas.Admin.Controllers
@@ -13,10 +14,12 @@ namespace ComedyBookingApp.Areas.Admin.Controllers
     {
 
         private readonly IUnitofWork _unitofWork;
+        private readonly IWebHostEnvironment _hostEnvironment;
 
-        public EventController(IUnitofWork unitOfWork)
+        public EventController(IUnitofWork unitOfWork, IWebHostEnvironment hostEnvironment)
         {
             _unitofWork = unitOfWork;
+            _hostEnvironment = hostEnvironment;
         }
         public IActionResult Index()
         {

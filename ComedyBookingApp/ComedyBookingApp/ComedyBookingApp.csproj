@@ -23,4 +23,9 @@
     <ProjectReference Include="..\ComedyBookingApp.DataAccess\ComedyBookingApp.DataAccess.csproj" />
   </ItemGroup>
 
+
+  <ItemGroup>
+    <Folder Include="wwwroot\images\comedians\" />
+  </ItemGroup>
+
 </Project>

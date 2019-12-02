@@ -13,38 +13,38 @@ namespace ComedyBookingApp.Models
         public int Id { get; set; }
 
         [Required]
-        [Display(Name="Comedian First Name")]
+        [Display(Name = "Comedian First Name")]
         public string FirstName { get; set; }
 
         [Required]
-        [Display(Name="Comedian Last Name")]
+        [Display(Name = "Comedian Last Name")]
         public string LastName { get; set; }
 
-    
-        [Display(Name="Comedian Phone Number")]
+
+        [Display(Name = "Comedian Phone Number")]
         public string PhoneNumber { get; set; }
 
         [Required]
-        [Display(Name="Comedian Email")]
+        [Display(Name = "Comedian Email")]
         public string Email { get; set; }
 
-    
-        [Display(Name="Comedian Years of Experience")]
+
+        [Display(Name = "Comedian Years of Experience")]
         public string ExperienceYears { get; set; }
 
         [DataType(DataType.ImageUrl)]
-        [Display(Name ="Comedian Headshot")]
+        [Display(Name = "Comedian Headshot")]
         public string ImageUrl { get; set; }
 
-        [Display(Name="Comedian Home State")]
+        [Display(Name = "Comedian Home State")]
         public string State { get; set; }
 
-        [Display(Name="Comedian Home City")]
+        [Display(Name = "Comedian Home City")]
         public string City { get; set; }
 
         public int AgentId { get; set; }
-
-        public Agent Agent { get; set; }
+        [ForeignKey("AgentId")]
+        public virtual Agent Agent { get; set; }
 
         [ForeignKey("ComedianShowId")]
         public ICollection<ComedianShow> ComedianShow { get; set; }

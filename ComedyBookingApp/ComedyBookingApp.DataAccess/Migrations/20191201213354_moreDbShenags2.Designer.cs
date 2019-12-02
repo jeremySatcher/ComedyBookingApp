@@ -4,14 +4,16 @@ using ComedyBookingApp.DataAccess.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ComedyBookingApp.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20191201213354_moreDbShenags2")]
+    partial class moreDbShenags2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -65,6 +67,9 @@ namespace ComedyBookingApp.DataAccess.Migrations
                     b.Property<int?>("ComedianId")
                         .HasColumnType("int");
 
+                    b.Property<int>("ComedianShowId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -103,13 +108,13 @@ namespace ComedyBookingApp.DataAccess.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("ComedianId")
+                    b.Property<int?>("ComedianId")
                         .HasColumnType("int");
 
                     b.Property<int?>("ComedianShowId")
                         .HasColumnType("int");
 
-                    b.Property<int>("EventId")
+                    b.Property<int?>("EventId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -128,9 +133,6 @@ namespace ComedyBookingApp.DataAccess.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("ComedianShowId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Date")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -141,7 +143,7 @@ namespace ComedyBookingApp.DataAccess.Migrations
                     b.Property<string>("ImageUrl")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("LocationId")
+                    b.Property<int?>("LocationId")
                         .HasColumnType("int");
 
                     b.Property<string>("LongDesc")
@@ -225,7 +227,7 @@ namespace ComedyBookingApp.DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("LocationId")
+                    b.Property<int?>("LocationId")
                         .HasColumnType("int");
 
                     b.Property<string>("PhoneNumber")
@@ -234,7 +236,8 @@ namespace ComedyBookingApp.DataAccess.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("LocationId")
-                        .IsUnique();
+                        .IsUnique()
+                        .HasFilter("[LocationId] IS NOT NULL");
 
                     b.ToTable("LocationContact");
                 });
@@ -475,15 +478,11 @@ namespace ComedyBookingApp.DataAccess.Migrations
                 {
                     b.HasOne("ComedyBookingApp.Models.Comedian", "Comedian")
                         .WithMany("ComedianShow")
-                        .HasForeignKey("ComedianId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ComedianId");
 
                     b.HasOne("ComedyBookingApp.Models.Event", "Event")
                         .WithMany("ComedianShows")
-                        .HasForeignKey("EventId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("EventId");
                 });
 
             modelBuilder.Entity("ComedyBookingApp.Models.Event", b =>
@@ -497,9 +496,7 @@ namespace ComedyBookingApp.DataAccess.Migrations
                 {
                     b.HasOne("ComedyBookingApp.Models.Location", "Location")
                         .WithOne("LocationContact")
-                        .HasForeignKey("ComedyBookingApp.Models.LocationContact", "LocationId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ComedyBookingApp.Models.LocationContact", "LocationId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

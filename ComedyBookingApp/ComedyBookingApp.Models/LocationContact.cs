@@ -27,7 +27,7 @@ namespace ComedyBookingApp.Models
         [Display(Name="Contact Phone Number")]
         public string PhoneNumber { get; set; }
 
-
+        public int LocationId { get; set; }
         [ForeignKey("LocationId")]
         public Location Location { get; set; }
     }

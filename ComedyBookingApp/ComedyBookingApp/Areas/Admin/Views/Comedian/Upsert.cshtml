@@ -1,16 +1,16 @@
-﻿@model ComedyBookingApp.Models.Comedian
+﻿@model ComedyBookingApp.Models.ViewModels.ComedianVM
 @{
     ViewData["Title"] = "Upsert";
     var title = "Create Comedian";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<form method="post" asp-action="Upsert">
+<form method="post" asp-action="Upsert" enctype="multipart/form-data">
     <div class="row px-2 mx-2 blackgroundWhite border">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        @if (Model.Id != 0)
+        @if (Model.Comedian.Id != 0)
         {
-            <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="Comedian.Id" />
             title = "Edit Comedian";
         }
 
@@ -21,68 +21,84 @@
         <div class="col-8">
             <div class="form-group row">
                 <div class="col-4">
-                    <label asp-for="FirstName"></label>
+                    <label asp-for="Comedian.FirstName"></label>
                 </div>
                 <div class="col-8">
-                    <input asp-for="FirstName" class="form-control" />
-                    <span asp-validation-for="FirstName" class="text-danger"></span>
+                    <input asp-for="Comedian.FirstName" class="form-control" />
+                    <span asp-validation-for="Comedian.FirstName" class="text-danger"></span>
                 </div>
             </div>
             <div class="form-group row">
                 <div class="col-4">
-                    <label asp-for="LastName"></label>
+                    <label asp-for="Comedian.LastName"></label>
                 </div>
                 <div class="col-8">
-                    <input asp-for="LastName" class="form-control" />
-                    <span asp-validation-for="LastName" class="text-danger"></span>
+                    <input asp-for="Comedian.LastName" class="form-control" />
+                    <span asp-validation-for="Comedian.LastName" class="text-danger"></span>
                 </div>
             </div>
             <div class="form-group row">
                 <div class="col-4">
-                    <label asp-for="Email"></label>
+                    <label asp-for="Comedian.Email"></label>
                 </div>
                 <div class="col-8">
-                    <input asp-for="Email" class="form-control" />
-                    <span asp-validation-for="Email" class="text-danger"></span>
+                    <input asp-for="Comedian.Email" class="form-control" />
+                    <span asp-validation-for="Comedian.Email" class="text-danger"></span>
                 </div>
             </div>
             <div class="form-group row">
                 <div class="col-4">
-                    <label asp-for="PhoneNumber"></label>
+                    <label asp-for="Comedian.PhoneNumber"></label>
                 </div>
                 <div class="col-8">
-                    <input asp-for="PhoneNumber" class="form-control" />
+                    <input asp-for="Comedian.PhoneNumber" class="form-control" />
                 </div>
             </div>
             <div class="form-group row">
                 <div class="col-4">
-                    <label asp-for="ExperienceYears"></label>
+                    <label asp-for="Comedian.ExperienceYears"></label>
                 </div>
                 <div class="col-8">
-                    <input asp-for="ExperienceYears" class="form-control" />
+                    <input asp-for="Comedian.ExperienceYears" class="form-control" />
                 </div>
             </div>
             <div class="form-group row">
                 <div class="col-4">
-                    <label asp-for="State"></label>
+                    <label asp-for="Comedian.State"></label>
                 </div>
                 <div class="col-8">
-                    <input asp-for="State" class="form-control" />
+                    <input asp-for="Comedian.State" class="form-control" />
                 </div>
             </div>
             <div class="form-group row">
                 <div class="col-4">
-                    <label asp-for="City"></label>
+                    <label asp-for="Comedian.City"></label>
                 </div>
                 <div class="col-8">
-                    <input asp-for="City" class="form-control" />
+                    <input asp-for="Comedian.City" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Comedian.AgentId"></label>
+                </div>
+                <div class="col-8">
+                    @Html.DropDownListFor(m => m.Comedian.AgentId, Model.AgentList, "- Select an agent if the comedian has one -", new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Comedian.ImageUrl"></label>
+                </div>
+                <div class="col-8">
+                    <input type="file" name="files" id="uploadBox" multiple class="form-control" />
                 </div>
             </div>
             <div class="form-group row">
                 <div class="col-8 offset-4">
-                    @if (Model.Id != 0)
+                    @if (Model.Comedian.Id != 0)
                     {
-                        <partial name="_EditAndBackToListButton" model="Model.Id" />
+                        <partial name="_EditAndBackToListButton" model="Model.Comedian.Id" />
                     }
                     else
                     {

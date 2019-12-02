@@ -8,7 +8,6 @@ namespace ComedyBookingApp.DataAccess.Data.Repository.IRepository
 {
     public interface IComedianShowRepository: IRepository<ComedianShow>
     {
-        IEnumerable<SelectListItem> GetComedianShowListForDropDown();
 
         void Update(ComedianShow comedianshow);
     }

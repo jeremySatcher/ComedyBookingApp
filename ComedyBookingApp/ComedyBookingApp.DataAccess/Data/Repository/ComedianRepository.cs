@@ -26,18 +26,19 @@ namespace ComedyBookingApp.DataAccess.Data.Repository
             });
         }
 
-        public void Update(Comedian agent)
+        public void Update(Comedian comedian)
         {
-            var objFromDb = _db.Comedian.FirstOrDefault(s => s.Id == agent.Id);
+            var objFromDb = _db.Comedian.FirstOrDefault(s => s.Id == comedian.Id);
 
-            objFromDb.FirstName = agent.FirstName;
-            objFromDb.LastName = agent.LastName;
-            objFromDb.PhoneNumber = agent.PhoneNumber;
-            objFromDb.Email = agent.Email;
-            objFromDb.ExperienceYears = agent.ExperienceYears;
-            objFromDb.ImageUrl = agent.ImageUrl;
-            objFromDb.State = agent.State;
-            objFromDb.City = agent.City;
+            objFromDb.FirstName = comedian.FirstName;
+            objFromDb.LastName = comedian.LastName;
+            objFromDb.PhoneNumber = comedian.PhoneNumber;
+            objFromDb.Email = comedian.Email;
+            objFromDb.ExperienceYears = comedian.ExperienceYears;
+            objFromDb.ImageUrl = comedian.ImageUrl;
+            objFromDb.State = comedian.State;
+            objFromDb.City = comedian.City;
+            objFromDb.AgentId = comedian.AgentId;
 
             _db.SaveChanges();
         }

@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewData["Title"] = "Comedian";
+    ViewData["Title"] = "Comedians' Shows";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -8,10 +8,10 @@
 <div class="backgroundWhite">
     <div class="row">
         <div class="col-6">
-            <h2 class="text-primary">Comedian List</h2>
+            <h2 class="text-primary">Comedian Show List</h2>
         </div>
         <div class="col-6 text-right">
-            <a asp-action="Upsert" class="btn btn-info"><i class="fas fa-plus"></i>&nbsp; Create New Comedian</a>
+            <a asp-action="Upsert" class="btn btn-info"><i class="fas fa-plus"></i>&nbsp; Create New List of Comedian's Show</a>
         </div>
     </div>
 
@@ -21,11 +21,8 @@
     <table id="tblData" class="table table-striped table-bordered" style="width:100%">
         <thead>
             <tr>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Exp. Years</th>
-                <th>State</th>
-                <th>Agent's Phone Number</th>
+                <th>Comedian's Name</th>
+                <th>Show's Name</th>
                 <th></th>
             </tr>
         </thead>
@@ -33,5 +30,5 @@
 </div>
 
 @section Scripts{
-    <script src="~/js/comedian.js"></script>
+    <script src="~/js/comedianshow.js"></script>
 }

@@ -28,9 +28,8 @@ namespace ComedyBookingApp.Models
         [Display(Name="Agent Email")]
         public string Email { get; set; }
 
-
+        public int ComedianId { get; set; }
         [ForeignKey("ComedianId")]
-
         public ICollection<Comedian> Comedian { get; set; }
 
 
