@@ -45,10 +45,5 @@ namespace ComedyBookingApp.Models
         public int AgentId { get; set; }
         [ForeignKey("AgentId")]
         public virtual Agent Agent { get; set; }
-
-        [ForeignKey("ComedianShowId")]
-        public ICollection<ComedianShow> ComedianShow { get; set; }
-
-
     }
 }

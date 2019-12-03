@@ -42,11 +42,8 @@ namespace ComedyBookingApp.Models
         [Display(Name="Capacity")]
         public int Capacity { get; set; }
 
+        public int EventId { get; set; }
         [ForeignKey("EventId")]
-        public ICollection<Event> Event { get; set; }
-
-        public LocationContact LocationContact { get; set; }
-
-    
+        public Event Event { get; set; }   
     }
 }

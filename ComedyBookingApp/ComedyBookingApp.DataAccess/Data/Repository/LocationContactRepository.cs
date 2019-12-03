@@ -32,7 +32,7 @@ namespace ComedyBookingApp.DataAccess.Data.Repository
             objFromDb.LName = locationContact.LName;
             objFromDb.Email = locationContact.Email;
             objFromDb.PhoneNumber = locationContact.PhoneNumber;
-            objFromDb.Location = locationContact.Location;
+            objFromDb.LocationId = locationContact.LocationId;
 
 
             _db.SaveChanges();

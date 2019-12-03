@@ -32,15 +32,5 @@ namespace ComedyBookingApp.Models
         [Required]
         [Display(Name = "Event Time")]
         public string Time { get; set; }
-
-        public int LocationId { get; set; }
-        [ForeignKey("LocationId")]
-        public Location Location { get; set; }
-
-        public int ComedianShowId { get; set; }
-        [ForeignKey("ComedianShowId")]
-        public ICollection<ComedianShow> ComedianShows { get; set; }
-
-
     }
 }

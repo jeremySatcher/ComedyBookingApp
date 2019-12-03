@@ -34,7 +34,6 @@ namespace ComedyBookingApp.DataAccess.Data.Repository
             objFromDb.LastName = agent.LastName; 
             objFromDb.PhoneNumber = agent.PhoneNumber;
             objFromDb.Email = agent.Email;
-            objFromDb.Comedian = agent.Comedian;
 
             _db.SaveChanges();
         }
