@@ -16,7 +16,7 @@ function loadEventDataTable() {
             { data: "price", "width": "15%" },
             { data: "date", "width": "15%" },
             { data: "time", "width": "15%" },
-            { data: "location", "width": "15%" },
+            { data: "location.name", "width": "15%" },
             {
                 "data": "id",
                 "render": function (data) {

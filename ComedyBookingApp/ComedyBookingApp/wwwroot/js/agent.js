@@ -1,11 +1,11 @@
-﻿var dataTableAgent;
+﻿var dataTableComedian;
 
 $(document).ready(function () {
-    loadAgentDataTable();
+    loadComedianDataTable();
 });
 
-function loadAgentDataTable() {
-    dataTableAgent = $('#tblData').DataTable({
+function loadComedianDataTable() {
+    dataTableComedian = $('#tblData').DataTable({
         "ajax": {
             "url": "/admin/agent/GetAll",
             "type": "GET",
@@ -14,9 +14,8 @@ function loadAgentDataTable() {
         "columns": [
             { data: "firstName", "width": "15%" },
             { data: "lastName", "width": "15%" },
-            { data: "email", "width": "15%" },
             { data: "phoneNumber", "width": "15%" },
-            { data: "comedian", "width": "15%" },
+            { data: "email", "width": "15%" },
             {
                 "data": "id",
                 "render": function (data) {
@@ -56,7 +55,7 @@ function Delete(url) {
             success: function (data) {
                 if (data.success) {
                     toastr.success(data.message);
-                    dataTableAgent.ajax.reload();
+                    dataTableComedian.ajax.reload();
                 }
                 else {
                     toastr.error(data.message);

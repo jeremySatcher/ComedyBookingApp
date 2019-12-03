@@ -35,9 +35,7 @@ namespace ComedyBookingApp.DataAccess.Data.Repository
             objFromDb.Zip = location.Zip;
             objFromDb.PhoneNumber = location.PhoneNumber;
             objFromDb.Email = location.Email;
-            objFromDb.ImageUrl = location.ImageUrl;
             objFromDb.Capacity = location.Capacity;
-            objFromDb.EventId = location.EventId;
 
 
             _db.SaveChanges();

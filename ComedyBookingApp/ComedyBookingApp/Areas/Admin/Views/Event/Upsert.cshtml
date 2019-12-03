@@ -1,4 +1,4 @@
-﻿@model ComedyBookingApp.Models.Event
+﻿@model ComedyBookingApp.Models.ViewModels.EventVM;
 @{
     ViewData["Title"] = "Upsert";
     var title = "Create Event";
@@ -8,9 +8,9 @@
 <form method="post" asp-action="Upsert">
     <div class="row px-2 mx-2 blackgroundWhite border">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        @if (Model.Id != 0)
+        @if (Model.Event.Id != 0)
         {
-            <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="Event.Id" />
             title = "Edit Event";
         }
 
@@ -21,53 +21,61 @@
         <div class="col-8">
             <div class="form-group row">
                 <div class="col-4">
-                    <label asp-for="Name"></label>
+                    <label asp-for="Event.Name"></label>
                 </div>
                 <div class="col-8">
-                    <input asp-for="Name" class="form-control" />
-                    <span asp-validation-for="Name" class="text-danger"></span>
+                    <input asp-for="Event.Name" class="form-control" />
+                    <span asp-validation-for="Event.Name" class="text-danger"></span>
                 </div>
             </div>
             <div class="form-group row">
                 <div class="col-4">
-                    <label asp-for="Price"></label>
+                    <label asp-for="Event.Price"></label>
                 </div>
                 <div class="col-8">
-                    <input asp-for="Price" class="form-control" />
-                    <span asp-validation-for="Price" class="text-danger"></span>
+                    <input asp-for="Event.Price" class="form-control" />
+                    <span asp-validation-for="Event.Price" class="text-danger"></span>
                 </div>
             </div>
             <div class="form-group row">
                 <div class="col-4">
-                    <label asp-for="Date"></label>
+                    <label asp-for="Event.Date"></label>
                 </div>
                 <div class="col-8">
-                    <input asp-for="Date" class="form-control" />
-                    <span asp-validation-for="Date" class="text-danger"></span>
+                    <input asp-for="Event.Date" class="form-control" />
+                    <span asp-validation-for="Event.Date" class="text-danger"></span>
                 </div>
             </div>
             <div class="form-group row">
                 <div class="col-4">
-                    <label asp-for="Time"></label>
+                    <label asp-for="Event.Time"></label>
                 </div>
                 <div class="col-8">
-                    <input asp-for="Time" class="form-control" />
-                    <span asp-validation-for="Time" class="text-danger"></span>
+                    <input asp-for="Event.Time" class="form-control" />
+                    <span asp-validation-for="Event.Time" class="text-danger"></span>
                 </div>
             </div>
             <div class="form-group row">
                 <div class="col-4">
-                    <label asp-for="LongDesc"></label>
+                    <label asp-for="Event.LongDesc"></label>
                 </div>
                 <div class="col-8">
-                    <input asp-for="LongDesc" class="form-control" />
+                    <input asp-for="Event.LongDesc" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Event.LocationId"></label>
+                </div>
+                <div class="col-8">
+                    @Html.DropDownListFor(m => m.Event.LocationId, Model.LocationList, "- Select a venue -", new { @class = "form-control" })
                 </div>
             </div>
             <div class="form-group row">
                 <div class="col-8 offset-4">
-                    @if (Model.Id != 0)
+                    @if (Model.Event.Id != 0)
                     {
-                        <partial name="_EditAndBackToListButton" model="Model.Id" />
+                        <partial name="_EditAndBackToListButton" model="Model.Event.Id" />
                     }
                     else
                     {
@@ -78,4 +86,5 @@
         </div>
     </div>
 </form>
+
 

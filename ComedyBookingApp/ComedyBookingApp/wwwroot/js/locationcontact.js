@@ -16,7 +16,7 @@ function loadDataTableLC() {
             { data: 'lName', "width": "15%" },
             { data: 'email', "width": "15%" },
             { data: 'phoneNumber', "width": "15%" },
-            { data: "location", "width": "15%" },
+            { data: "location.city", "width": "15%" },
             {
                 "data": "id",
                 "render": function (data) {

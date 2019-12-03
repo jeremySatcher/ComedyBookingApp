@@ -1,28 +1,29 @@
-﻿var dataTableCShow;
+﻿var dataTableComedian;
 
 $(document).ready(function () {
-    loadAgentCShowTable();
+    loadComedianDataTable();
 });
 
-function loadCShowDataTable() {
-    dataTableAgent = $('#tblData').DataTable({
+function loadComedianDataTable() {
+    dataTableComedian = $('#tblData').DataTable({
         "ajax": {
             "url": "/admin/comedianshow/GetAll",
             "type": "GET",
             "datatype": "json"
         },
         "columns": [
-            { data: "comedian.firstName" + " " + "comedian.lastName", "width": "50%" },
+            { data: "comedian.firstName", "width": "25%" },
+            { data: "comedian.lastName", "width": "25%" },
             { data: "event.name", "width": "25%" },
             {
                 "data": "id",
                 "render": function (data) {
                     return `<div class="text-center">
-                                <a href="/Admin/comedianshow/Upsert/${data}" class='btn btn-success text-white' style='cursor:pointer; width:100px;'>
+                                <a href="/Admin/comedian/Upsert/${data}" class='btn btn-success text-white' style='cursor:pointer; width:100px;'>
                                     <i class='fa fa-edit'></i> Edit
                                 </a>
                                 &nbsp;
-                                <a onclick=Delete("/Admin/comedianshow/Delete/${data}") class='btn btn-danger text-white' style='cursor:pointer; width:100px;'>
+                                <a onclick=Delete("/Admin/comedian/Delete/${data}") class='btn btn-danger text-white' style='cursor:pointer; width:100px;'>
                                     <i class='fa fa-trash'></i> Delete
                                 </a>
                             </div>
@@ -53,7 +54,7 @@ function Delete(url) {
             success: function (data) {
                 if (data.success) {
                     toastr.success(data.message);
-                    dataTableCShow.ajax.reload();
+                    dataTableComedian.ajax.reload();
                 }
                 else {
                     toastr.error(data.message);

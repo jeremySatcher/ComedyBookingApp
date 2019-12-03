@@ -53,31 +53,33 @@ namespace ComedyBookingApp.Areas.Admin.Controllers
             {
                 string webRootPath = _hostEnvironment.WebRootPath;
                 var files = HttpContext.Request.Form.Files;
-                if(comedianVM.Comedian.Id == 0)
+                if (comedianVM.Comedian.Id == 0)
                 {
+                    //New Service
                     string fileName = Guid.NewGuid().ToString();
                     var uploads = Path.Combine(webRootPath, @"images\comedians");
                     var extension = Path.GetExtension(files[0].FileName);
 
-                    using (var fileStreams = new FileStream(Path.Combine(uploads,fileName+extension),FileMode.Create))
+                    using (var fileStreams = new FileStream(Path.Combine(uploads, fileName + extension), FileMode.Create))
                     {
                         files[0].CopyTo(fileStreams);
                     }
-                    comedianVM.Comedian.ImageUrl = @"images\comedians\" + fileName + extension;
+                    comedianVM.Comedian.ImageUrl = @"\images\comedians\" + fileName + extension;
 
                     _unitofWork.Comedian.Add(comedianVM.Comedian);
                 }
                 else
                 {
-                    var comedianFromDb = _unitofWork.Comedian.Get(comedianVM.Comedian.Id);
-                    if(files.Count > 0)
+                    //Edit Service
+                    var serviceFromDb = _unitofWork.Comedian.Get(comedianVM.Comedian.Id);
+                    if (files.Count > 0)
                     {
                         string fileName = Guid.NewGuid().ToString();
                         var uploads = Path.Combine(webRootPath, @"images\comedians");
                         var extension_new = Path.GetExtension(files[0].FileName);
 
-                        var imagePath = Path.Combine(webRootPath, comedianFromDb.ImageUrl.TrimStart('\\'));
-                        if(System.IO.File.Exists(imagePath))
+                        var imagePath = Path.Combine(webRootPath, serviceFromDb.ImageUrl.TrimStart('\\'));
+                        if (System.IO.File.Exists(imagePath))
                         {
                             System.IO.File.Delete(imagePath);
                         }
@@ -86,11 +88,11 @@ namespace ComedyBookingApp.Areas.Admin.Controllers
                         {
                             files[0].CopyTo(fileStreams);
                         }
-                        comedianVM.Comedian.ImageUrl = @"images\comedians\" + fileName + extension_new;
+                        comedianVM.Comedian.ImageUrl = @"\images\comedians\" + fileName + extension_new;
                     }
                     else
                     {
-                        comedianVM.Comedian.ImageUrl = comedianFromDb.ImageUrl;
+                        comedianVM.Comedian.ImageUrl = serviceFromDb.ImageUrl;
                     }
 
                     _unitofWork.Comedian.Update(comedianVM.Comedian);
@@ -98,10 +100,13 @@ namespace ComedyBookingApp.Areas.Admin.Controllers
                 _unitofWork.Save();
                 return RedirectToAction(nameof(Index));
             }
+
             else
             {
+                comedianVM.AgentList = _unitofWork.Agent.GetAgentListForDropDown();
                 return View(comedianVM);
             }
+
         }
 
         #region API CALLS
@@ -115,13 +120,21 @@ namespace ComedyBookingApp.Areas.Admin.Controllers
         [HttpDelete]
         public IActionResult Delete(int id)
         {
-            var objFromDb = _unitofWork.Comedian.Get(id);
-            if (objFromDb == null)
+            var comedianFromDb = _unitofWork.Comedian.Get(id);
+            string webRootPath = _hostEnvironment.WebRootPath;
+
+            var imagePath = Path.Combine(webRootPath, comedianFromDb.ImageUrl.TrimStart('\\'));
+            if (System.IO.File.Exists(imagePath))
+            {
+                System.IO.File.Delete(imagePath);
+            }
+
+            if (comedianFromDb == null)
             {
                 return Json(new { success = false, message = "Error while deleting." });
             }
 
-            _unitofWork.Comedian.Remove(objFromDb);
+            _unitofWork.Comedian.Remove(comedianFromDb);
             _unitofWork.Save();
             return Json(new { success = true, message = "Deleted successfully." });
         }

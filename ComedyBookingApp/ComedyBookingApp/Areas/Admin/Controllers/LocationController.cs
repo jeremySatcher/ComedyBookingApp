@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using ComedyBookingApp.DataAccess.Data.Repository.IRepository;
 using ComedyBookingApp.Models;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ComedyBookingApp.Areas.Admin.Controllers
@@ -13,10 +15,12 @@ namespace ComedyBookingApp.Areas.Admin.Controllers
     {
 
         private readonly IUnitofWork _unitofWork;
+        private readonly IWebHostEnvironment _hostEnvironment;
 
-        public LocationController(IUnitofWork unitOfWork)
+        public LocationController(IUnitofWork unitOfWork, IWebHostEnvironment hostEnvironment)
         {
             _unitofWork = unitOfWork;
+            _hostEnvironment = hostEnvironment;
         }
         public IActionResult Index()
         {
@@ -45,18 +49,22 @@ namespace ComedyBookingApp.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (location.Id == 0)
+                if(location.Id == 0)
                 {
                     _unitofWork.Location.Add(location);
                 }
                 else
                 {
+
                     _unitofWork.Location.Update(location);
                 }
                 _unitofWork.Save();
                 return RedirectToAction(nameof(Index));
             }
-            return View(location);
+            else
+            {
+                return View(location);
+            }
         }
 
         #region API CALLS

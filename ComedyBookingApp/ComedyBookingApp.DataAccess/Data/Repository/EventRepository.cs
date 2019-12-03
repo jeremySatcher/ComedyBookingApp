@@ -32,9 +32,9 @@ namespace ComedyBookingApp.DataAccess.Data.Repository
             objFromDb.Name = showevent.Name;
             objFromDb.Price = showevent.Price;
             objFromDb.LongDesc = showevent.LongDesc;
-            objFromDb.ImageUrl = showevent.ImageUrl;
             objFromDb.Date = showevent.Date;
             objFromDb.Time = showevent.Time;
+            objFromDb.LocationId = showevent.LocationId;
 
             _db.SaveChanges();
         }

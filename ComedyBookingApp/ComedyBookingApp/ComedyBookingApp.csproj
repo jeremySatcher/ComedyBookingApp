@@ -26,6 +26,8 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\images\comedians\" />
+    <Folder Include="wwwroot\images\events\" />
+    <Folder Include="wwwroot\images\locations\" />
   </ItemGroup>
 
 </Project>

@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using ComedyBookingApp.DataAccess.Data.Repository.IRepository;
 using ComedyBookingApp.Models;
+using ComedyBookingApp.Models.ViewModels;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,12 +16,12 @@ namespace ComedyBookingApp.Areas.Admin.Controllers
     {
 
         private readonly IUnitofWork _unitofWork;
-        private readonly IWebHostEnvironment _hostEnvironment;
 
-        public EventController(IUnitofWork unitOfWork, IWebHostEnvironment hostEnvironment)
+
+        public EventController(IUnitofWork unitOfWork)
         {
             _unitofWork = unitOfWork;
-            _hostEnvironment = hostEnvironment;
+
         }
         public IActionResult Index()
         {
@@ -28,38 +30,43 @@ namespace ComedyBookingApp.Areas.Admin.Controllers
 
         public IActionResult Upsert(int? id)
         {
-            Event show = new Event();
-            if (id == null)
+            EventVM eventVM = new EventVM()
             {
-                return View(show);
-            }
-            show = _unitofWork.Event.Get(id.GetValueOrDefault());
-            if (show == null)
+                Event = new Models.Event(),
+                LocationList = _unitofWork.Location.GetLocationListForDropDown()
+
+            };
+            if (id != null)
             {
-                return NotFound();
+                eventVM.Event = _unitofWork.Event.Get(id.GetValueOrDefault());
             }
-            return View(show);
+
+            return View(eventVM);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
 
-        public IActionResult Upsert(Event show)
+        public IActionResult Upsert(EventVM eventVM)
         {
             if (ModelState.IsValid)
             {
-                if (show.Id == 0)
+                if (eventVM.Event.Id == 0)
                 {
-                    _unitofWork.Event.Add(show);
+                    _unitofWork.Event.Add(eventVM.Event);
                 }
                 else
                 {
-                    _unitofWork.Event.Update(show);
+                    _unitofWork.Event.Update(eventVM.Event);
                 }
                 _unitofWork.Save();
                 return RedirectToAction(nameof(Index));
             }
-            return View(show);
+            else
+            {
+                eventVM.LocationList = _unitofWork.Location.GetLocationListForDropDown();
+                return View(eventVM);
+            }
         }
 
         #region API CALLS
@@ -67,19 +74,19 @@ namespace ComedyBookingApp.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult GetAll()
         {
-            return Json(new { data = _unitofWork.Event.GetAll() });
+            return Json(new { data = _unitofWork.Event.GetAll(includeProperties: "Location") });
         }
 
         [HttpDelete]
         public IActionResult Delete(int id)
         {
-            var objFromDb = _unitofWork.Event.Get(id);
-            if (objFromDb == null)
+            var eventFromDb = _unitofWork.Event.Get(id);
+            if (eventFromDb == null)
             {
                 return Json(new { success = false, message = "Error while deleting." });
             }
 
-            _unitofWork.Event.Remove(objFromDb);
+            _unitofWork.Event.Remove(eventFromDb);
             _unitofWork.Save();
             return Json(new { success = true, message = "Deleted successfully." });
         }

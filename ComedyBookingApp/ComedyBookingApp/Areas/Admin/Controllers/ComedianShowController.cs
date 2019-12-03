@@ -14,12 +14,10 @@ namespace ComedyBookingApp.Areas.Admin.Controllers
     public class ComedianShowController : Controller
     {
         private readonly IUnitofWork _unitOfWork;
-        private readonly IWebHostEnvironment _hostEnvironment;
 
-        public ComedianShowController(IUnitofWork unitOfWork, IWebHostEnvironment hostEnvironment)
+        public ComedianShowController(IUnitofWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
-            _hostEnvironment = hostEnvironment;
         }
         public IActionResult Index()
         {
@@ -47,7 +45,7 @@ namespace ComedyBookingApp.Areas.Admin.Controllers
         public IActionResult Upsert(ComedianShowVM comedianShowVM)
         {
             if (ModelState.IsValid)
-            {;
+            {
                 if (comedianShowVM.ComedianShow.Id == 0)
                 {
                     _unitOfWork.ComedianShow.Add(comedianShowVM.ComedianShow);
@@ -67,9 +65,25 @@ namespace ComedyBookingApp.Areas.Admin.Controllers
 
         #region API Calls
 
+        [HttpGet]
+
         public IActionResult GetAll()
         {
             return Json(new { data = _unitOfWork.ComedianShow.GetAll(includeProperties:"Comedian,Event")});
+        }
+
+        [HttpDelete]
+        public IActionResult Delete(int id)
+        {
+            var objFromDb = _unitOfWork.ComedianShow.Get(id);
+            if (objFromDb == null)
+            {
+                return Json(new { success = false, message = "Error while deleting." });
+            }
+
+            _unitOfWork.ComedianShow.Remove(objFromDb);
+            _unitOfWork.Save();
+            return Json(new { success = true, message = "Deleted successfully." });
         }
 
         #endregion

@@ -42,6 +42,7 @@ namespace ComedyBookingApp.Models
         [Display(Name = "Comedian Home City")]
         public string City { get; set; }
 
+        [Display(Name = "Comedian's Agent")]
         public int AgentId { get; set; }
         [ForeignKey("AgentId")]
         public virtual Agent Agent { get; set; }

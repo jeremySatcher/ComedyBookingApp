@@ -102,11 +102,37 @@
                     }
                     else
                     {
-                        <partial name="_CreateAndBackToListButton" />
+                        <div class="row">
+                            <div class="col">
+                                <button type="submit" onclick="return validateInput()" class="btn btn-info form-control">Create</button>
+                            </div>
+                            <div class="col">
+                                <a asp-action="Index" class="btn btn-warning form-control">Back to List</a>
+                            </div>
+                        </div>
                     }
                 </div>
             </div>
         </div>
+        @if(Model.Comedian.Id!=0)
+        {
+            <div class="col-4">
+                <img src="@Model.Comedian.ImageUrl" width="300" style="border-radius:5px; border:1px solid #bbb9b9" />
+
+            </div>
+        }
     </div>
 </form>
+
+@section Scripts{ 
+<script>
+    function validateInput() {
+        if (document.getElementById("uploadBox").value == "") {
+            swal("Error", "Please Select an Image", "error")
+            return false;
+        }
+        return true;
+    };
+</script>
+}
 

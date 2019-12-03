@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using ComedyBookingApp.DataAccess.Data.Repository.IRepository;
 using ComedyBookingApp.Models;
+using ComedyBookingApp.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ComedyBookingApp.Areas.Admin.Controllers
@@ -25,38 +26,37 @@ namespace ComedyBookingApp.Areas.Admin.Controllers
 
         public IActionResult Upsert(int? id)
         {
-            LocationContact locationContact = new LocationContact();
-            if(id == null)
+            LocationContactVM locationcontactVM = new LocationContactVM()
             {
-                return View(locationContact);
-            }
-            locationContact = _unitofWork.LocationContact.Get(id.GetValueOrDefault());
-            if(locationContact == null)
+                LocationContact = new Models.LocationContact(),
+                LocationList = _unitofWork.Location.GetLocationListForDropDown(),
+            };
+            if (id != null)
             {
-                return NotFound();
+                locationcontactVM.LocationContact = _unitofWork.LocationContact.Get(id.GetValueOrDefault());
             }
-            return View(locationContact);
+            return View(locationcontactVM);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
 
-        public IActionResult Upsert(LocationContact locationContact)
+        public IActionResult Upsert(LocationContactVM locationContactVM)
         {
             if(ModelState.IsValid)
             {
-                if(locationContact.Id == 0)
+                if(locationContactVM.LocationContact.Id == 0)
                 {
-                    _unitofWork.LocationContact.Add(locationContact);
+                    _unitofWork.LocationContact.Add(locationContactVM.LocationContact);
                 }
                 else
                 {
-                    _unitofWork.LocationContact.Update(locationContact);
+                    _unitofWork.LocationContact.Update(locationContactVM.LocationContact);
                 }
                 _unitofWork.Save();
                 return RedirectToAction(nameof(Index));
             }
-            return View(locationContact);
+            return View(locationContactVM);
         }
 
         #region API CALLS
@@ -64,7 +64,7 @@ namespace ComedyBookingApp.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult GetAll()
         {
-            return Json(new { data = _unitofWork.LocationContact.GetAll() });
+            return Json(new { data = _unitofWork.LocationContact.GetAll(includeProperties: "Location") });
         }
 
         [HttpDelete]
