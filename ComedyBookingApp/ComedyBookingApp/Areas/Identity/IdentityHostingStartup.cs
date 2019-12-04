@@ -7,7 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using ComedyBookingApp.DataAccess;
 
-//[assembly: HostingStartup(typeof(ComedyBookingApp.Areas.Identity.IdentityHostingStartup))]
+[assembly: HostingStartup(typeof(ComedyBookingApp.Areas.Identity.IdentityHostingStartup))]
 namespace ComedyBookerApp.Areas.Identity
 {
     public class IdentityHostingStartup : IHostingStartup

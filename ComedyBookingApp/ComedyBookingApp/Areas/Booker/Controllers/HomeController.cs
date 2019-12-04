@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using ComedyBookingApp.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ComedyBookingApp.Controllers
 {
@@ -25,6 +26,7 @@ namespace ComedyBookingApp.Controllers
             return View();
         }
 
+        [Authorize(Roles = Booker.BookerRole)]
         public IActionResult Privacy()
         {
             return View();
