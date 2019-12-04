@@ -14,9 +14,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
-using MySecureApplication.Data;
+using MySecureApplication.DataAccess;
 
-namespace MySecureApplication.Areas.Identity.Pages.Account
+namespace ComedyBookingApp.Areas.Identity.Pages.Account
 {
     [AllowAnonymous]
     public class RegisterModel : PageModel
@@ -90,7 +90,7 @@ namespace MySecureApplication.Areas.Identity.Pages.Account
                     if (!resultRole)
                     {
                         var role = new IdentityRole();
-                        role.Name = Helper.LawyerRole;
+                        role.Name = Booker.BookerRole;
                         await _roleManager.CreateAsync(role);
                     }
 
