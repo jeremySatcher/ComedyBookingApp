@@ -5,10 +5,10 @@ using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using MySecureApplication.Data;
+using ComedyBookerApp.DataAccess;
 
 [assembly: HostingStartup(typeof(MySecureApplication.Areas.Identity.IdentityHostingStartup))]
-namespace MySecureApplication.Areas.Identity
+namespace ComedyBookerApp.Areas.Identity
 {
     public class IdentityHostingStartup : IHostingStartup
     {
