@@ -19,11 +19,11 @@ function loadComedianDataTable() {
                 "data": "id",
                 "render": function (data) {
                     return `<div class="text-center">
-                                <a href="/Admin/comedian/Upsert/${data}" class='btn btn-success text-white' style='cursor:pointer; width:100px;'>
+                                <a href="/Admin/comedianshow/Upsert/${data}" class='btn btn-success text-white' style='cursor:pointer; width:100px;'>
                                     <i class='fa fa-edit'></i> Edit
                                 </a>
                                 &nbsp;
-                                <a onclick=Delete("/Admin/comedian/Delete/${data}") class='btn btn-danger text-white' style='cursor:pointer; width:100px;'>
+                                <a onclick=Delete("/Admin/comedianshow/Delete/${data}") class='btn btn-danger text-white' style='cursor:pointer; width:100px;'>
                                     <i class='fa fa-trash'></i> Delete
                                 </a>
                             </div>

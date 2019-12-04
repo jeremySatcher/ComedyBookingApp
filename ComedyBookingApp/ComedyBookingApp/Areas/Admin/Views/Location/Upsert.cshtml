@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<form method="post" asp-action="Upsert">
+<form method="post" asp-action="Upsert" enctype="multipart/form-data">
     <div class="row px-2 mx-2 blackgroundWhite border">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         @if (Model.Id != 0)
@@ -21,7 +21,7 @@
         <div class="col-8">
             <div class="form-group row">
                 <div class="col-4">
-                    <label asp-for="Name"></label>
+                    <label asp-for="Name">Name</label>
                 </div>
                 <div class="col-8">
                     <input asp-for="Name" class="form-control" />
@@ -30,7 +30,7 @@
             </div>
             <div class="form-group row">
                 <div class="col-4">
-                    <label asp-for="Street"></label>
+                    <label asp-for="Street">Street Address</label>
                 </div>
                 <div class="col-8">
                     <input asp-for="Street" class="form-control" />
@@ -39,7 +39,7 @@
             </div>
             <div class="form-group row">
                 <div class="col-4">
-                    <label asp-for="City"></label>
+                    <label asp-for="City">City</label>
                 </div>
                 <div class="col-8">
                     <input asp-for="City" class="form-control" />
@@ -48,7 +48,7 @@
             </div>
             <div class="form-group row">
                 <div class="col-4">
-                    <label asp-for="Zip"></label>
+                    <label asp-for="Zip">ZIP Code</label>
                 </div>
                 <div class="col-8">
                     <input asp-for="Zip" class="form-control" />
@@ -57,7 +57,7 @@
             </div>
             <div class="form-group row">
                 <div class="col-4">
-                    <label asp-for="PhoneNumber"></label>
+                    <label asp-for="PhoneNumber">Phone Number</label>
                 </div>
                 <div class="col-8">
                     <input asp-for="PhoneNumber" class="form-control" />
@@ -66,7 +66,7 @@
             </div>
             <div class="form-group row">
                 <div class="col-4">
-                    <label asp-for="Email"></label>
+                    <label asp-for="Email">Email</label>
                 </div>
                 <div class="col-8">
                     <input asp-for="Email" class="form-control" />
@@ -74,10 +74,18 @@
             </div>
             <div class="form-group row">
                 <div class="col-4">
-                    <label asp-for="Capacity"></label>
+                    <label asp-for="Capacity">Max Capacity</label>
                 </div>
                 <div class="col-8">
                     <input asp-for="Capacity" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="ImageUrl">Shot of the main room</label>
+                </div>
+                <div class="col-8">
+                    <input type="file" name="files" id="uploadBox" multiple class="form-control" />
                 </div>
             </div>
             <div class="form-group row">
@@ -88,13 +96,41 @@
                     }
                     else
                     {
-                        <partial name="_CreateAndBackToListButton" />
+                        <div class="row">
+                            <div class="col">
+                                <button type="submit" onclick="return validateInput()" class="btn btn-info form-control">Create</button>
+                            </div>
+                            <div class="col">
+                                <a asp-action="Index" class="btn btn-warning form-control">Back to List</a>
+                            </div>
+                        </div>
                     }
                 </div>
             </div>
         </div>
+        @if (Model.Id != 0)
+        {
+            <div class="col-4">
+                Picture of the main room at @Model.Name
+                <img src="@Model.ImageUrl" width="300" style="border-radius:5px; border:1px solid #bbb9b9" />
+
+            </div>
+        }
     </div>
 </form>
+
+@section Scripts{
+    <script>
+    function validateInput() {
+        if (document.getElementById("uploadBox").value == "") {
+            swal("Error", "Please Select an Image", "error")
+            return false;
+        }
+        return true;
+    };
+    </script>
+}
+
 
 
 

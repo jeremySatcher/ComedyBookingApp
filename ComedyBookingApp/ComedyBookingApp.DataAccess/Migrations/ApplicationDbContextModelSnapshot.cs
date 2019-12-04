@@ -191,38 +191,6 @@ namespace ComedyBookingApp.DataAccess.Migrations
                     b.ToTable("Location");
                 });
 
-            modelBuilder.Entity("ComedyBookingApp.Models.LocationContact", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("LName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("LocationId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("PhoneNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("LocationId");
-
-                    b.ToTable("LocationContact");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
                     b.Property<string>("Id")
@@ -473,15 +441,6 @@ namespace ComedyBookingApp.DataAccess.Migrations
                 });
 
             modelBuilder.Entity("ComedyBookingApp.Models.Event", b =>
-                {
-                    b.HasOne("ComedyBookingApp.Models.Location", "Location")
-                        .WithMany()
-                        .HasForeignKey("LocationId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("ComedyBookingApp.Models.LocationContact", b =>
                 {
                     b.HasOne("ComedyBookingApp.Models.Location", "Location")
                         .WithMany()

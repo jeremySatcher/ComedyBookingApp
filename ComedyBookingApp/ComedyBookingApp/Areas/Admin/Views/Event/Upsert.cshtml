@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<form method="post" asp-action="Upsert">
+<form method="post" asp-action="Upsert" enctype="multipart/form-data">
     <div class="row px-2 mx-2 blackgroundWhite border">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         @if (Model.Event.Id != 0)
@@ -21,7 +21,7 @@
         <div class="col-8">
             <div class="form-group row">
                 <div class="col-4">
-                    <label asp-for="Event.Name"></label>
+                    <label asp-for="Event.Name">Show Name</label>
                 </div>
                 <div class="col-8">
                     <input asp-for="Event.Name" class="form-control" />
@@ -30,7 +30,7 @@
             </div>
             <div class="form-group row">
                 <div class="col-4">
-                    <label asp-for="Event.Price"></label>
+                    <label asp-for="Event.Price">Door Price</label>
                 </div>
                 <div class="col-8">
                     <input asp-for="Event.Price" class="form-control" />
@@ -39,7 +39,7 @@
             </div>
             <div class="form-group row">
                 <div class="col-4">
-                    <label asp-for="Event.Date"></label>
+                    <label asp-for="Event.Date">Date</label>
                 </div>
                 <div class="col-8">
                     <input asp-for="Event.Date" class="form-control" />
@@ -48,7 +48,7 @@
             </div>
             <div class="form-group row">
                 <div class="col-4">
-                    <label asp-for="Event.Time"></label>
+                    <label asp-for="Event.Time">Time of Show</label>
                 </div>
                 <div class="col-8">
                     <input asp-for="Event.Time" class="form-control" />
@@ -57,18 +57,26 @@
             </div>
             <div class="form-group row">
                 <div class="col-4">
-                    <label asp-for="Event.LongDesc"></label>
+                    <label asp-for="Event.LongDesc">Describe the show</label>
                 </div>
                 <div class="col-8">
-                    <input asp-for="Event.LongDesc" class="form-control" />
+                    <textarea asp-for="Event.LongDesc" class="form-control" height="300px"></textarea>
                 </div>
             </div>
             <div class="form-group row">
                 <div class="col-4">
-                    <label asp-for="Event.LocationId"></label>
+                    <label asp-for="Event.LocationId">Venue for show</label>
                 </div>
                 <div class="col-8">
                     @Html.DropDownListFor(m => m.Event.LocationId, Model.LocationList, "- Select a venue -", new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Event.ImageUrl">Promotional Image</label>
+                </div>
+                <div class="col-8">
+                    <input type="file" name="files" id="uploadBox" multiple class="form-control" />
                 </div>
             </div>
             <div class="form-group row">
@@ -79,12 +87,48 @@
                     }
                     else
                     {
-                        <partial name="_CreateAndBackToListButton" />
+                        <div class="row">
+                            <div class="col">
+                                <button type="submit" onclick="return validateInput()" class="btn btn-info form-control">Create</button>
+                            </div>
+                            <div class="col">
+                                <a asp-action="Index" class="btn btn-warning form-control">Back to List</a>
+                            </div>
+                        </div>
                     }
                 </div>
             </div>
         </div>
+        @if (Model.Event.Id != 0)
+        {
+            <div class="col-4">
+                A promotional image for @Model.Event.Name
+                <img src="@Model.Event.ImageUrl" width="300" style="border-radius:5px; border:1px solid #bbb9b9" />
+
+            </div>
+        }
     </div>
 </form>
 
+@section Scripts{
+
+       
+    <script src="https://cdn.tiny.cloud/1/n94ifuzvl80pchikopiwgz2esrw8n28dwcywvpejlqrregfp/tinymce/5/tinymce.min.js"></script>
+    <script>
+
+        tinymce.init({
+            selector: 'textarea',
+        plugins: 'lists',
+        menubar: 'file edit format'
+    });
+
+function validateInput() {
+    if (document.getElementById("uploadBox").value == "") {
+            swal("Error", "Please Select an Image", "error")
+        return false;
+    }
+    return true;
+};
+    </script>
+}
 

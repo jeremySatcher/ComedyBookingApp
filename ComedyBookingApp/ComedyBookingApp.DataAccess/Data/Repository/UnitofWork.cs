@@ -16,7 +16,6 @@ namespace ComedyBookingApp.DataAccess.Data.Repository
             Agent = new AgentRepository(_db);
             Comedian = new ComedianRepository(_db);
             Event = new EventRepository(_db);
-            LocationContact = new LocationContactRepository(_db);
             Location = new LocationRepository(_db);
             ComedianShow = new ComedianShowRepository(_db);
         }
@@ -24,7 +23,6 @@ namespace ComedyBookingApp.DataAccess.Data.Repository
         public IAgentRepository Agent { get; private set; }
         public IComedianRepository Comedian { get; private set; }
         public IEventRepository Event { get; private set; }
-        public ILocationContactRepository LocationContact { get; private set; }
         public ILocationRepository Location { get; private set; }
 
         public IComedianShowRepository ComedianShow { get; private set; }

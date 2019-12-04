@@ -34,8 +34,11 @@ namespace ComedyBookingApp.Models
         [Display(Name="Location Email")]
         public string Email { get; set; }
 
+        [DataType(DataType.ImageUrl)]
+        [Display(Name = "Location Image")]
+        public string ImageUrl { get; set; }
 
-        [Display(Name="Capacity")]
-        public int Capacity { get; set; } 
+        [Display(Name = "Capacity")]
+        public int Capacity { get; set; }
     }
 }

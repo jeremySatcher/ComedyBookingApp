@@ -35,6 +35,7 @@ namespace ComedyBookingApp.DataAccess.Data.Repository
             objFromDb.Date = showevent.Date;
             objFromDb.Time = showevent.Time;
             objFromDb.LocationId = showevent.LocationId;
+            objFromDb.ImageUrl = showevent.ImageUrl;
 
             _db.SaveChanges();
         }

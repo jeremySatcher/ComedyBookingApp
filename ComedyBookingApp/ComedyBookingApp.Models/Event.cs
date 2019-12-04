@@ -29,8 +29,12 @@ namespace ComedyBookingApp.Models
         [Display(Name = "Event Time")]
         public string Time { get; set; }
 
+        [DataType(DataType.ImageUrl)]
+        [Display(Name = "Promotional Image")]
+        public string ImageUrl { get; set; }
+
         [Required]
-        [Display(Name = "Location")]
+        [Display(Name = "Venue")]
         public int LocationId { get; set; }
         [ForeignKey("LocationId")]
 

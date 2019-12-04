@@ -12,10 +12,10 @@ function loadLocationDataTable() {
             "datatype": "json"
         },
         "columns": [
-            { data: "name", "width": "15%" },
-            { data: "street", "width": "15%" },
-            { data: "city", "width": "15%" },
-            { data: "capacity", "width": "15%" },
+            { data: "name", "width": "25%" },
+            { data: "street", "width": "13%" },
+            { data: "city", "width": "13%" },
+            { data: "capacity", "width": "8%" },
             { data: "phoneNumber", "width": "15%" },
             {
                 "data": "id",

@@ -21,20 +21,21 @@
         <div class="col-8">
             <div class="form-group row">
                 <div class="col-4">
-                    <label asp-for="ComedianShow.ComedianId"></label>
-                </div>
-                <div class="col-8">
-                    @Html.DropDownListFor(m => m.ComedianShow.ComedianId, Model.ComedianList, "- Select a comedian -", new { @class = "form-control" })
-                </div>
-            </div>
-            <div class="form-group row">
-                <div class="col-4">
-                    <label asp-for="ComedianShow.ComedianId"></label>
+                    <label asp-for="ComedianShow.ComedianId">Show Comedian is on</label>
                 </div>
                 <div class="col-8">
                     @Html.DropDownListFor(m => m.ComedianShow.EventId, Model.EventList, "- Select an event -", new { @class = "form-control" })
                 </div>
             </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="ComedianShow.ComedianId">Comedian</label>
+                </div>
+                <div class="col-8">
+                    @Html.DropDownListFor(m => m.ComedianShow.ComedianId, Model.ComedianList, "- Select a comedian -", new { @class = "form-control" })
+                </div>
+            </div>
+
             <div class="form-group row">
                 <div class="col-8 offset-4">
                     @if (Model.ComedianShow.Id != 0)
@@ -50,4 +51,6 @@
         </div>
     </div>
 </form>
+
+
 

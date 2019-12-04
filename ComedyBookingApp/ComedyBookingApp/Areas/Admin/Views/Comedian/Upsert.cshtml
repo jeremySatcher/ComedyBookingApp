@@ -21,7 +21,7 @@
         <div class="col-8">
             <div class="form-group row">
                 <div class="col-4">
-                    <label asp-for="Comedian.FirstName"></label>
+                    <label asp-for="Comedian.FirstName">First Name</label>
                 </div>
                 <div class="col-8">
                     <input asp-for="Comedian.FirstName" class="form-control" />
@@ -30,7 +30,7 @@
             </div>
             <div class="form-group row">
                 <div class="col-4">
-                    <label asp-for="Comedian.LastName"></label>
+                    <label asp-for="Comedian.LastName">Last Name</label>
                 </div>
                 <div class="col-8">
                     <input asp-for="Comedian.LastName" class="form-control" />
@@ -39,7 +39,7 @@
             </div>
             <div class="form-group row">
                 <div class="col-4">
-                    <label asp-for="Comedian.Email"></label>
+                    <label asp-for="Comedian.Email">Email</label>
                 </div>
                 <div class="col-8">
                     <input asp-for="Comedian.Email" class="form-control" />
@@ -48,7 +48,7 @@
             </div>
             <div class="form-group row">
                 <div class="col-4">
-                    <label asp-for="Comedian.PhoneNumber"></label>
+                    <label asp-for="Comedian.PhoneNumber">Phone</label>
                 </div>
                 <div class="col-8">
                     <input asp-for="Comedian.PhoneNumber" class="form-control" />
@@ -56,7 +56,7 @@
             </div>
             <div class="form-group row">
                 <div class="col-4">
-                    <label asp-for="Comedian.ExperienceYears"></label>
+                    <label asp-for="Comedian.ExperienceYears">Years of Experience</label>
                 </div>
                 <div class="col-8">
                     <input asp-for="Comedian.ExperienceYears" class="form-control" />
@@ -64,7 +64,7 @@
             </div>
             <div class="form-group row">
                 <div class="col-4">
-                    <label asp-for="Comedian.State"></label>
+                    <label asp-for="Comedian.State">Home State</label>
                 </div>
                 <div class="col-8">
                     <input asp-for="Comedian.State" class="form-control" />
@@ -72,7 +72,7 @@
             </div>
             <div class="form-group row">
                 <div class="col-4">
-                    <label asp-for="Comedian.City"></label>
+                    <label asp-for="Comedian.City">City</label>
                 </div>
                 <div class="col-8">
                     <input asp-for="Comedian.City" class="form-control" />
@@ -80,7 +80,7 @@
             </div>
             <div class="form-group row">
                 <div class="col-4">
-                    <label asp-for="Comedian.AgentId"></label>
+                    <label asp-for="Comedian.AgentId">Agent</label>
                 </div>
                 <div class="col-8">
                     @Html.DropDownListFor(m => m.Comedian.AgentId, Model.AgentList, "- Select an agent if the comedian has one -", new { @class = "form-control" })
@@ -88,7 +88,7 @@
             </div>
             <div class="form-group row">
                 <div class="col-4">
-                    <label asp-for="Comedian.ImageUrl"></label>
+                    <label asp-for="Comedian.ImageUrl">Headshot</label>
                 </div>
                 <div class="col-8">
                     <input type="file" name="files" id="uploadBox" multiple class="form-control" />
@@ -117,6 +117,7 @@
         @if(Model.Comedian.Id!=0)
         {
             <div class="col-4">
+                @Model.Comedian.FirstName's Headshot
                 <img src="@Model.Comedian.ImageUrl" width="300" style="border-radius:5px; border:1px solid #bbb9b9" />
 
             </div>
