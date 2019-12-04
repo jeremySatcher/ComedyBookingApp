@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using ComedyBookerApp.DataAccess;
+using ComedyBookingApp.DataAccess;
 
 [assembly: HostingStartup(typeof(MySecureApplication.Areas.Identity.IdentityHostingStartup))]
 namespace ComedyBookerApp.Areas.Identity

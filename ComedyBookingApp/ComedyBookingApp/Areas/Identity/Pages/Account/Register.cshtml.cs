@@ -14,7 +14,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
-using MySecureApplication.Data;
+using ComedyBookingApp.DataAccess;
 
 namespace MySecureApplication.Areas.Identity.Pages.Account
 {
@@ -86,18 +86,18 @@ namespace MySecureApplication.Areas.Identity.Pages.Account
                     _logger.LogInformation("User created a new account with password.");
 
                     // creating lawyer role    
-                    var resultRole = await _roleManager.RoleExistsAsync(Helper.LawyerRole);
+                    var resultRole = await _roleManager.RoleExistsAsync(ComedyBookingApp.Booker.BookerRole);
                     if (!resultRole)
                     {
                         var role = new IdentityRole();
-                        role.Name = Helper.LawyerRole;
+                        role.Name = ComedyBookingApp.Booker.BookerRole;
                         await _roleManager.CreateAsync(role);
                     }
 
                     //add lawyers to lawyer role
-                    if (user.UserName.ToLower().Contains(Helper.LawyerRole.ToLower()))
+                    if (user.UserName.ToLower().Contains(ComedyBookingApp.Booker.BookerRole.ToLower()))
                     {
-                        await _userManager.AddToRoleAsync(user, Helper.LawyerRole);
+                        await _userManager.AddToRoleAsync(user, ComedyBookingApp.Booker.BookerRole);
                     }
 
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
