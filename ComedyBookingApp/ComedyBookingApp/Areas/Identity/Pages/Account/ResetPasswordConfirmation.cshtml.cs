@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace MySecureApplication.Areas.Identity.Pages.Account
+namespace ComedyBookingApp.Areas.Identity.Pages.Account
 {
     [AllowAnonymous]
     public class ResetPasswordConfirmationModel : PageModel
