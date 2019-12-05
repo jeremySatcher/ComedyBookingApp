@@ -20,16 +20,13 @@ namespace ComedyBookingApp.Areas.Identity.Pages.Account
         private readonly UserManager<IdentityUser> _userManager;
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly ILogger<LoginModel> _logger;
-        private readonly IEmailSender _emailSender;
 
         public LoginModel(SignInManager<IdentityUser> signInManager, 
             ILogger<LoginModel> logger,
-            UserManager<IdentityUser> userManager,
-            IEmailSender emailSender)
+            UserManager<IdentityUser> userManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
-            _emailSender = emailSender;
             _logger = logger;
         }
 
@@ -108,7 +105,7 @@ namespace ComedyBookingApp.Areas.Identity.Pages.Account
             return Page();
         }
 
-        public async Task<IActionResult> OnPostSendVerificationEmailAsync()
+        /*public async Task<IActionResult> OnPostSendVerificationEmailAsync()
         {
             if (!ModelState.IsValid)
             {
@@ -135,6 +132,6 @@ namespace ComedyBookingApp.Areas.Identity.Pages.Account
 
             ModelState.AddModelError(string.Empty, "Verification email sent. Please check your email.");
             return Page();
-        }
+        }*/
     }
 }
