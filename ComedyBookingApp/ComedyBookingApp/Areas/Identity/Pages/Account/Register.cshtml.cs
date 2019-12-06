@@ -15,6 +15,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
 using ComedyBookingApp.DataAccess;
+using ComedyBookingApp.Utility;
 
 namespace ComedyBookingApp.Areas.Identity.Pages.Account
 {
@@ -81,21 +82,40 @@ namespace ComedyBookingApp.Areas.Identity.Pages.Account
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User created a new account with password.");
+                    if(!await _roleManager.RoleExistsAsync(SD.Admin))
+                    {
+                        await _roleManager.CreateAsync(new IdentityRole(SD.Admin));
+                        await _roleManager.CreateAsync(new IdentityRole(SD.Booker));
+                    }
+
+                    string role = Request.Form["rdUserRole"].ToString();
+
+                    if(role == SD.Admin)
+                    {
+                        await _userManager.AddToRoleAsync(user, SD.Admin);
+                    }
+                    else
+                    {
+                        if (role == SD.Booker)
+                        {
+                            await _userManager.AddToRoleAsync(user, SD.Booker);
+                        }
+                    }
 
                     // creating lawyer role    
-                    var resultRole = await _roleManager.RoleExistsAsync(Booker.BookerRole);
+                    /*var resultRole = await _roleManager.RoleExistsAsync(Booker.BookerRole);
                     if (!resultRole)
                     {
                         var role = new IdentityRole();
                         role.Name = Booker.BookerRole;
                         await _roleManager.CreateAsync(role);
-                    }
+                    }*/
 
                     //add lawyers to lawyer role
-                    if (user.UserName.ToLower().Contains(Booker.BookerRole.ToLower()))
+                    /*if (user.UserName.ToLower().Contains(Booker.BookerRole.ToLower()))
                     {
                         await _userManager.AddToRoleAsync(user, Booker.BookerRole);
-                    }
+                    }*/
 
                     //var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     //code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));

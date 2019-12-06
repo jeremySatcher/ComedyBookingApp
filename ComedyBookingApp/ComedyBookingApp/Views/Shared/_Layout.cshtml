@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@using ComedyBookingApp.Utility
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -25,6 +29,8 @@
                     <li class="nav-item">
                         <a class="nav-link text-light" asp-area="Booker" asp-controller="Home" asp-action="Index">Home</a>
                     </li>
+                    @if (User.IsInRole(SD.Admin))
+                    {
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropDown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Content Management
@@ -37,6 +43,7 @@
                             <a class="dropdown-item text-black" asp-area="Admin" asp-controller="ComedianShow" asp-action="Index">Comedians on Show</a>
                         </div>
                     </li>
+                    }
 
                     <li class="nav-item">
                         <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>

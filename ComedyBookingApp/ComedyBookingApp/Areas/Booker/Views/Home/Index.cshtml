@@ -1,8 +1,47 @@
-﻿@{
+﻿@model ComedyBookingApp.Models.ViewModels.HomeViewModel
+@using ComedyBookingApp.Utility
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@{
     ViewData["Title"] = "Home Page";
 }
+@if (User.IsInRole(SD.Booker))
+{
+    <div class="row pt-3">
+        <div class="col-6">
+            <h2 class="text-primary"><b>Welcome to Bookr!</b></h2>
+        </div>
+        <div class="col-6 text-right">
+            <a asp-action="NewEvent" class="btn btn-info"><i class="fas fa-plus"></i>&nbsp; Create A New Show</a>
+        </div>
+    </div>
+    <div class="row container pb-3 backgroundWhite">
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+        <div class="col-12">
+            <div class="row">
+                @foreach (var comedian in Model.ComedianList.OrderBy(o => o.LastName))
+                {
+                    <div class="col-lg-4 col-xl-3 col-md-6 pb-4">
+                        <div class="card" style="border:2px solid #541609; border-radius:5px; background-image: linear-gradient(180deg, #E95420, #E67f25)">
+                            <div class="pt-2 text-center">
+                                <h3 class="card-title text-white">@comedian.FirstName @comedian.LastName</h3>
+                            </div>
+                            <div>
+                                <div class="text-white text-center pr-2">@comedian.City, @comedian.State</div>
+                            </div>
+                            <img src="@comedian.ImageUrl" class="card-img-top p-2 rounded" />
+                            <a asp-action="Upsert" class="btn btn-info" style="border-radius:2px;" asp-route-id="@comedian.Id">Book them now!</a>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+}
+
+@if (User.IsInRole(SD.Admin))
+{
+    <h1 class="text-center">Hello Admin, welcome to Bookr!</h1>
+    <h6 class="text-center">You can perform CRUD commands to the backend database and manage user roles from the menu bar</h6>
+    <div class="text-center"><img src="~/images/BookrLogo.jpg"/></div>
+}

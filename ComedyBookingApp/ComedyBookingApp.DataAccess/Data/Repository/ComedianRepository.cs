@@ -26,6 +26,16 @@ namespace ComedyBookingApp.DataAccess.Data.Repository
             });
         }
 
+        public IEnumerable<SelectListItem> GetOneComedianForDropDown(int id)
+        {
+            var idString = id.ToString();
+            return new List<SelectListItem>()
+            {
+                new SelectListItem(){ Value = idString, Text = "Comedian Selected"}
+            };
+        }
+
+
         public void Update(Comedian comedian)
         {
             var objFromDb = _db.Comedian.FirstOrDefault(s => s.Id == comedian.Id);
