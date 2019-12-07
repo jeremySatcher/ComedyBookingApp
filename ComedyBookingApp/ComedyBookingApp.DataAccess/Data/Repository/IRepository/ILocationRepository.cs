@@ -10,6 +10,7 @@ namespace ComedyBookingApp.DataAccess.Data.Repository.IRepository
     {
         IEnumerable<SelectListItem> GetLocationListForDropDown();
 
+        IEnumerable<SelectListItem> GetOneLocationForDropDown(int id);
         void Update(Location location);
     }
 }

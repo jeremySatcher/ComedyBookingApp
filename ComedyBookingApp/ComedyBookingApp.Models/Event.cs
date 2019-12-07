@@ -37,7 +37,9 @@ namespace ComedyBookingApp.Models
         [Display(Name = "Venue")]
         public int LocationId { get; set; }
         [ForeignKey("LocationId")]
-
         public Location Location { get; set; }
+        public string UserId { get; set; }
+        [ForeignKey("UserId")]
+        public virtual ApplicationUser ApplicationUser { get; set; }
     }
 }

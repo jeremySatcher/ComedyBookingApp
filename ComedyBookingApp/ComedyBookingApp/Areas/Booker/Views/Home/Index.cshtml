@@ -38,10 +38,17 @@
         </div>
     </div>
 }
-
-@if (User.IsInRole(SD.Admin))
+else if (User.IsInRole(SD.Admin))
 {
     <h1 class="text-center">Hello Admin, welcome to Bookr!</h1>
     <h6 class="text-center">You can perform CRUD commands to the backend database and manage user roles from the menu bar</h6>
-    <div class="text-center"><img src="~/images/BookrLogo.jpg"/></div>
+    <div class="text-center"><img src="~/images/BookrLogo.jpg" /></div>
 }
+else
+{
+    <h1 class="text-center">Hello newbie, welcome to Bookr!</h1>
+    <h6 class="text-center">Click register to make an account, or log in to get started!</h6>
+    <div class="text-center"><img src="~/images/BookrLogo.jpg" /></div>
+}
+
+

@@ -31,23 +31,35 @@
                     </li>
                     @if (User.IsInRole(SD.Admin))
                     {
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropDown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Content Management
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropDown">
-                            <a class="dropdown-item text-black" asp-area="Admin" asp-controller="Comedian" asp-action="Index">Comedians</a>
-                            <a class="dropdown-item text-black" asp-area="Admin" asp-controller="Event" asp-action="Index">Shows</a>
-                            <a class="dropdown-item text-black" asp-area="Admin" asp-controller="Location" asp-action="Index">Venues</a>
-                            <a class="dropdown-item text-black" asp-area="Admin" asp-controller="Agent" asp-action="Index">Agents</a>
-                            <a class="dropdown-item text-black" asp-area="Admin" asp-controller="ComedianShow" asp-action="Index">Comedians on Show</a>
-                        </div>
-                    </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropDown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Content Management
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropDown">
+                                <a class="dropdown-item text-black" asp-area="Admin" asp-controller="Comedian" asp-action="Index">Comedians</a>
+                                <a class="dropdown-item text-black" asp-area="Admin" asp-controller="Event" asp-action="Index">Shows</a>
+                                <a class="dropdown-item text-black" asp-area="Admin" asp-controller="Location" asp-action="Index">Venues</a>
+                                <a class="dropdown-item text-black" asp-area="Admin" asp-controller="Agent" asp-action="Index">Agents</a>
+                                <a class="dropdown-item text-black" asp-area="Admin" asp-controller="ComedianShow" asp-action="Index">Comedians on Show</a>
+                            </div>
+                        </li>
+                    }
+                    @if (User.IsInRole(SD.Booker))
+                    {
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropDown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Booker Menu
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropDown">
+                                <a class="dropdown-item text-black" asp-area="Booker" asp-controller="BookerEvent" asp-action="Index">Show List</a>
+                                <a class="dropdown-item text-black" asp-area="Admin" asp-controller="Event" asp-action="Index">Manage Shows</a>
+                                <a class="dropdown-item text-black" asp-area="Booker" asp-controller="ComedianList" asp-action="Index">Comedian List</a>
+                                <a class="dropdown-item text-black" asp-area="Booker" asp-controller="VenueList" asp-action="Index">Venue List</a>
+                            </div>
+                        </li>
                     }
 
-                    <li class="nav-item">
-                        <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                    </li>
+                    
                 </ul>
             </div>
             <partial name="_LoginPartial" />

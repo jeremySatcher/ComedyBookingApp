@@ -1,0 +1,58 @@
+﻿@model ComedyBookingApp.Models.ViewModels.VenueListVM
+@using ComedyBookingApp.Utility
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@{
+    ViewData["Title"] = "Venue List Page";
+}
+@if (User.IsInRole(SD.Booker))
+{
+    <div class="row pt-3">
+        <div class="col-6">
+            <h2 class="text-primary"><b>Look at all the Venues!</b></h2>
+        </div>
+    </div>
+    <div class="row container pb-3 backgroundWhite">
+
+        <div class="col-12">
+            <div class="row">
+                @foreach (var location in Model.LocationList.OrderBy(o => o.Name))
+                {
+                    <div class="col-lg-12 col-xl-12 col-md-12 col-sm-12 pb-4">
+                        <div class="card" style="border:2px solid #541609; border-radius:5px; background-image: linear-gradient(180deg, #E95420, #E67f25)">
+                            <div class="row">
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                                    <img src="@location.ImageUrl" class="card-img-top rounded"/>
+                                    
+
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                                    <h3 class="card-title text-white pt-1">@location.Name</h3>
+                                    <p class="text-white mt-1">Located in: @location.Street, @location.City</p>
+                                    <p class="text-white">Capacity: @location.Capacity</p>
+                                    <p class="text-white">Email: @location.Email</p>
+                                    <p class="text-white">Phone Number: @location.PhoneNumber</p>
+                                </div>
+                            </div>
+                            <a asp-action="Upsert" class="btn btn-info" style="border-radius:2px;" asp-route-id="@location.Id">Create a show here!</a>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+}
+else if (User.IsInRole(SD.Admin))
+{
+    <h1 class="text-center">Hello Admin, welcome to Bookr!</h1>
+    <h6 class="text-center">You can perform CRUD commands to the backend database and manage user roles from the menu bar</h6>
+    <div class="text-center"><img src="~/images/BookrLogo.jpg" /></div>
+}
+else
+{
+    <h1 class="text-center">Hello newbie, welcome to Bookr!</h1>
+    <h6 class="text-center">Click register to make an account, or log in to get started!</h6>
+    <div class="text-center"><img src="~/images/BookrLogo.jpg" /></div>
+}
+
+

@@ -10,5 +10,7 @@ namespace ComedyBookingApp.Models.ViewModels
         public Event Event { get; set; }
         public IEnumerable<SelectListItem> LocationList { get; set; }
 
+        public Location Location { get; set; }
+
     }
 }

@@ -21,7 +21,6 @@ namespace ComedyBookingApp.Controllers
         private readonly ILogger<HomeController> _logger;
         private readonly IUnitofWork _unitOfWork;
         private readonly IWebHostEnvironment _hostEnvironment;
-        private HomeViewModel HomeVM;
 
 
         public HomeController(ILogger<HomeController> logger, IUnitofWork unitofWork, IWebHostEnvironment hostEnvironment)
@@ -34,7 +33,7 @@ namespace ComedyBookingApp.Controllers
 
         public IActionResult Index()
         {
-            HomeVM = new HomeViewModel()
+            var HomeVM = new HomeViewModel()
             {
                 ComedianList = _unitOfWork.Comedian.GetAll(),
             };

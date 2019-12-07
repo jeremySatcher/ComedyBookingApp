@@ -10,10 +10,12 @@ namespace ComedyBookingApp.Models
     {
         [Key]
         public int Id { get; set; }
+        [Required]
         [Display(Name = "Comedian on Show")]
         public int ComedianId { get; set; }
         [ForeignKey("ComedianId")]
         public Comedian Comedian { get; set; }
+        [Required]
         [Display(Name = "Show Comedian is on")]
         public int EventId { get; set; }
         [ForeignKey("EventId")]

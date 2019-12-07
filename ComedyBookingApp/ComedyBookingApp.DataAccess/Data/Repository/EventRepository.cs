@@ -25,6 +25,15 @@ namespace ComedyBookingApp.DataAccess.Data.Repository
             });
         }
 
+        public IEnumerable<SelectListItem> GetOneEventForDropDown(int id)
+        {
+            var idString = id.ToString();
+            return new List<SelectListItem>()
+            {
+                new SelectListItem(){ Value = idString, Text = "Event Selected"}
+            };
+        }
+
         public void Update(Event showevent)
         {
             var objFromDb = _db.Event.FirstOrDefault(s => s.Id == showevent.Id);

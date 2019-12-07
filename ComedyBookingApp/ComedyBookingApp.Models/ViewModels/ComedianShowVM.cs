@@ -11,6 +11,7 @@ namespace ComedyBookingApp.Models.ViewModels
         public IEnumerable<SelectListItem> ComedianList { get; set; }
         public IEnumerable<SelectListItem> EventList { get; set; }
         public Comedian Comedian { get; set; }
+        public Event Event { get; set; }
 
 
     }
