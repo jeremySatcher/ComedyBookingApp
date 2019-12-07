@@ -6,12 +6,13 @@
 }
 
     <div class="row pt-3">
-        <div class="col-6">
+        <div class="col-4">
             <h2 class="text-primary"><b>Here's all the Shows!</b></h2>
         </div>
-        <div class="col-6 text-right">
+        <div class="col-8 text-right">
             <a asp-action="Upsert" class="btn btn-info"><i class="fas fa-plus"></i>&nbsp; Create A New Show</a>
-            <a class="btn btn-success" asp-area="Admin" asp-controller="Event" asp-action="Index">Edit and Delete Shows</a>
+            <a class="btn btn-success m-1" asp-area="Admin" asp-controller="Event" asp-action="Index">Manage Shows</a>
+            <a class="btn btn-primary m-1" asp-area="Admin" asp-controller="ComedianShow" asp-action="Index">Manage Comedians on Shows</a>
         </div>
         <div class="row container pb-3 backgroundWhite">
 
@@ -27,22 +28,22 @@
                                     </div>
                                     <div class="col-xl-7 mx-2">
                                         <h3 class="card-title text-white"><b>@show.Name - @show.Date, @show.Time</b></h3>
-                                        <p class="text-white">Location: Takes place at @show.Location.Name</p>
+                                        <p class="text-white"><b>Location:</b> Takes place at @show.Location.Name</p>
                                         @if (show.Price > 0)
                                         {
-                                            <p class="text-white">Price: Costs $@show.Price to get in.</p>
+                                            <p class="text-white my-2"><b>Price:</b> Costs $@show.Price to get in.</p>
                                         }
                                         else
                                         {
-                                            <p class="text-white">This show is free!</p>
+                                            <p class="text-white my-2">This show is free!</p>
                                         }
                                         @if (show.LongDesc != null)
                                         {
-                                            <p class="text-white">Description: @show.LongDesc</p>
+                                            <p class="text-white my-2"><b>Description:</b> @show.LongDesc</p>
                                         }
                                         else
                                         {
-                                            <p class="text-white">This show doesn't have a description.</p>
+                                            <p class="text-white my-2">This show doesn't have a description.</p>
                                         }
                                     </div>
                                 </div>

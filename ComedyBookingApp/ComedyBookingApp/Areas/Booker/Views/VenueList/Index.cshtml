@@ -28,10 +28,10 @@
                                 </div>
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                                     <h3 class="card-title text-white pt-1">@location.Name</h3>
-                                    <p class="text-white mt-1">Located in: @location.Street, @location.City</p>
-                                    <p class="text-white">Capacity: @location.Capacity</p>
-                                    <p class="text-white">Email: @location.Email</p>
-                                    <p class="text-white">Phone Number: @location.PhoneNumber</p>
+                                    <p class="text-white mt-1 pb-2"><b>Located in:</b> @location.Street, @location.City</p>
+                                    <p class="text-white pb-2"><b>Capacity:</b> @location.Capacity</p>
+                                    <p class="text-white pb-2"><b>Email:</b> @location.Email</p>
+                                    <p class="text-white pb-2"><b>Phone Number:</b> @location.PhoneNumber</p>
                                 </div>
                             </div>
                             <a asp-action="Upsert" class="btn btn-info" style="border-radius:2px;" asp-route-id="@location.Id">Create a show here!</a>
