@@ -11,6 +11,7 @@ namespace ComedyBookingApp.DataAccess.Data.Repository.IRepository
         IEventRepository Event { get; }
         ILocationRepository Location { get; }
         IComedianShowRepository ComedianShow { get; }
+        IUserRepository User { get; }
         void Save();
     }
 }
